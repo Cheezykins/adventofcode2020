@@ -10,21 +10,12 @@ class ExpenseReport
     protected array $expenses;
 
     /**
-     * @param string $input
-     * @return string
-     */
-    protected function normaliseWhiteSpace(string $input): string
-    {
-        return trim(str_replace("\r\n", "\n", $input));
-    }
-
-    /**
      * ExpenseReport constructor.
      * @param string $report
      */
     public function __construct(string $report)
     {
-        $this->expenses = explode("\n", $this->normaliseWhiteSpace($report));
+        $this->expenses = explode("\n", $report);
     }
 
     /**
