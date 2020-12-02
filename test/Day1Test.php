@@ -11,7 +11,7 @@ class Day1Test extends TestCase
 {
     public function testExpensesGetsValues()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example.txt');
 
         $expenses = new ExpenseReport($fixture);
 
@@ -23,7 +23,7 @@ class Day1Test extends TestCase
 
     public function testExpensesGetsValuesMultiple()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example.txt');
 
         $expenses = new ExpenseReport($fixture);
 
@@ -34,7 +34,7 @@ class Day1Test extends TestCase
 
     public function testExpensesSum()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example.txt');
 
         $expenses = new ExpenseReport($fixture);
 
@@ -46,7 +46,7 @@ class Day1Test extends TestCase
 
     public function testExpensesSumMultiple()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/example.txt');
 
         $expenses = new ExpenseReport($fixture);
 
@@ -58,7 +58,7 @@ class Day1Test extends TestCase
 
     public function testSolution1()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/input1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/input.txt');
 
         $expenses = new ExpenseReport($fixture);
 
@@ -69,7 +69,7 @@ class Day1Test extends TestCase
 
     public function testSolution2()
     {
-        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/input1.txt');
+        $fixture = file_get_contents(__DIR__ . '/fixtures/Day1/input.txt');
 
         $expenses = new ExpenseReport($fixture);
 
