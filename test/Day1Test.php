@@ -79,37 +79,7 @@ class Day1Test extends TestCase
 
     public function testLongArbitraryDepthSolution()
     {
-        $fixture = '
-1982
-1604
-689
-400
-260
-1179
-1007
-588
-597
-362
-280
-1843
-201
-1937
-246
-1511
-1861
-1367
-1319
-1515
-1528
-1255
-1403
-35159
-798
-1784
-605
-316
-1319
-';
+        $fixture = $this->loadFixture(__DIR__ . '/fixtures/Day1/arbitary.txt');
 
         $fixture = $this->normaliseWhiteSpace($fixture);
 
