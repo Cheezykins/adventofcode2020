@@ -9,12 +9,6 @@ class ExpirationYearValidator extends YearValidator
 
     public function validate(string $entry): bool
     {
-        if (!parent::validate($entry)) {
-            return false;
-        }
-        if ((int)$entry < 2020 || (int)$entry > 2030) {
-            return false;
-        }
-        return true;
+        return parent::validate($entry) && (int)$entry >= 2020 && (int)$entry <= 2030;
     }
 }
