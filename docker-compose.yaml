@@ -1,14 +1,14 @@
 version: '3'
 services:
   composer:
-    image: 1and1internet/php-build-environment:7.4
+    image: 1and1internet/php-build-environment:8.0
     entrypoint: [ "composer" ]
     command: [ "--version" ]
     volumes:
       - ./:/app/
 
   phpunit:
-    image: 1and1internet/php-build-environment:7.4
+    image: 1and1internet/php-build-environment:8.0
     entrypoint: ["vendor/bin/phpunit"]
     volumes:
       - ./:/app/
