@@ -5,6 +5,7 @@ namespace Cheezykins\AdventOfCode2020\Test;
 
 
 use Cheezykins\AdventOfCode2020\Day5\BoardingPass;
+use Cheezykins\AdventOfCode2020\Day5\Plane;
 
 class Day5Test extends TestCase
 {
@@ -48,39 +49,23 @@ class Day5Test extends TestCase
     {
         $fixture = $this->loadFixture(__DIR__ . '/fixtures/Day5/input.txt');
 
-        $highest = 0;
+        $boarders = explode("\n", $fixture);
 
-        foreach (explode("\n", $fixture) as $line) {
-            $pass = new BoardingPass($line);
-            if ($pass->getSeatId() > $highest) {
-                $highest = $pass->getSeatId();
-            }
-        }
+        $plane = new Plane();
+        $plane->loadBoarders($boarders);
 
-        $this->assertEquals(878, $highest);
+        $this->assertEquals(878, $plane->getHighestSeatId());
     }
 
     public function testSolution2()
     {
         $fixture = $this->loadFixture(__DIR__ . '/fixtures/Day5/input.txt');
 
-        $passes = [];
+        $boarders = explode("\n", $fixture);
 
-        foreach (explode("\n", $fixture) as $line) {
-            $passes[] = (new BoardingPass($line))->getSeatId();
-        }
+        $plane = new Plane();
+        $plane->loadBoarders($boarders);
 
-        sort($passes);
-
-        $passId = 0;
-
-        foreach ($passes as $key => $value) {
-            if (array_key_exists($key + 1, $passes) && $passes[$key + 1] == $value + 2) {
-                $passId = $value + 1;
-                break;
-            }
-        }
-
-        $this->assertEquals(504, $passId);
+        $this->assertEquals(504, $plane->findMissingSeat());
     }
 }

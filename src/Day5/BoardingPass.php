@@ -19,24 +19,14 @@ class BoardingPass
 
     protected function parseCode(): void
     {
-        $rowCode = substr($this->code, 0, 7);
-        $columnCode = substr($this->code, 7, 3);
+        $binary = str_replace(['F', 'B', 'L', 'R'],['0', '1', '0', '1'], $this->code);
 
-        $this->row = $this->reduceCode(str_split($rowCode), 0, 127,'F');
-        $this->column = $this->reduceCode(str_split($columnCode), 0, 7, 'L');
+        $rowCode = substr($binary, 0, 7);
+        $columnCode = substr($binary, 7, 3);
+
+        $this->row = bindec($rowCode);
+        $this->column = bindec($columnCode);
         $this->seatId = $this->row * 8 + $this->column;
-    }
-
-    protected function reduceCode(array $codeCharacters, int $lowerBound, int $upperBound, string $lowerCharacter): int
-    {
-        foreach ($codeCharacters as $character) {
-            if ($character === $lowerCharacter) {
-                $upperBound = $lowerBound + ceil(($upperBound - $lowerBound) / 2);;
-            } else {
-                $lowerBound = $upperBound - floor(($upperBound - $lowerBound) / 2);;
-            }
-        }
-        return $lowerBound;
     }
 
     public function getRow(): int
