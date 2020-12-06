@@ -5,7 +5,7 @@ namespace Cheezykins\AdventOfCode2020\Test;
 
 
 use Cheezykins\AdventOfCode2020\Day5\BoardingPass;
-use Cheezykins\AdventOfCode2020\Day5\Plane;
+use Cheezykins\AdventOfCode2020\Day5\Flight;
 
 class Day5Test extends TestCase
 {
@@ -51,7 +51,7 @@ class Day5Test extends TestCase
 
         $boarders = explode("\n", $fixture);
 
-        $plane = new Plane();
+        $plane = new Flight();
         $plane->loadBoarders($boarders);
 
         $this->assertEquals(878, $plane->getHighestSeatId());
@@ -63,7 +63,7 @@ class Day5Test extends TestCase
 
         $boarders = explode("\n", $fixture);
 
-        $plane = new Plane();
+        $plane = new Flight();
         $plane->loadBoarders($boarders);
 
         $this->assertEquals(504, $plane->findMissingSeat());

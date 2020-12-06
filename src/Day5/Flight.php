@@ -4,7 +4,7 @@
 namespace Cheezykins\AdventOfCode2020\Day5;
 
 
-class Plane
+class Flight
 {
 
     /** @var array|BoardingPass[] */
