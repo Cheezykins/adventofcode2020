@@ -47,7 +47,7 @@ class Baggage
     public function countUniqueContainersOfBag(string $bagName): int
     {
         $bag = $this->bags[$bagName];
-        return count($bag->getUniqueContainers());
+        return $bag->countUniqueContainers();
     }
 
     public function countContentsOfBag(string $bagName): int

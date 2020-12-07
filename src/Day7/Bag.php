@@ -17,18 +17,19 @@ class Bag
     protected array $containedBy = [];
     protected string $name;
 
-    public function __construct(string $name) {
+    public function __construct(string $name)
+    {
         $this->name = $name;
     }
 
-    public function addBag(Bag $bag, int $count = 1)
+    public function addBag(Bag $bag, int $count): void
     {
         $this->contents[] = $bag;
         $this->counts[] = $count;
         $bag->setContainer($this);
     }
 
-    protected function setContainer(Bag $bag)
+    protected function setContainer(Bag $bag): void
     {
         $this->containedBy[] = $bag;
     }
@@ -38,26 +39,23 @@ class Bag
         $containers = [];
         foreach ($this->containedBy as $container) {
             $containers[] = $container;
-            $containers = array_merge($containers, $container->getUniqueContainers());
+            $containers = array_merge($containers, $container->getContainers());
         }
         return $containers;
     }
 
     public function countContents(): int
     {
-        echo '.';
-        $count = 0;
-        foreach ($this->contents as $index => $content)
-        {
-            $count += $this->counts[$index];
+        $count = array_sum($this->counts);
+        foreach ($this->contents as $index => $content) {
             $count += $this->counts[$index] * $content->countContents();
         }
         return $count;
     }
 
-    public function getUniqueContainers(): array
+    public function countUniqueContainers(): int
     {
-        return array_unique($this->getContainers());
+        return count(array_unique($this->getContainers()));
     }
 
     public function __toString(): string
