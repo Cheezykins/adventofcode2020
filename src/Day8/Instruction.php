@@ -41,7 +41,7 @@ class Instruction
         }
     }
 
-    public function flipInstruction(): void
+    public function flipOperation(): void
     {
         if ($this->operation === self::JMP) {
             $this->operation = self::NOP;
@@ -53,5 +53,15 @@ class Instruction
     public function reset(): void
     {
         $this->hits = 0;
+    }
+
+    public function wasHit(): bool
+    {
+        return $this->hits > 0;
+    }
+
+    public function isAcc(): bool
+    {
+        return $this->operation === self::ACC;
     }
 }

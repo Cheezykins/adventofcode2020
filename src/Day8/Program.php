@@ -12,6 +12,8 @@ class Program
     /** @var array|Instruction[] */
     protected array $instructions;
 
+    protected array $flipCandidates = [];
+
     public function __construct(array $instructions)
     {
         $this->instructions = $instructions;
@@ -62,18 +64,34 @@ class Program
 
     public function runSequence(): int
     {
-        $accumulator = 0;
-        foreach ($this->instructions as $instruction) {
-            $instruction->flipInstruction();
-            try {
-                $accumulator = $this->run();
-                break;
-            } catch (\Exception $exception) {
-                $instruction->flipInstruction();
-                continue;
+        try {
+            return $this->run();
+        } catch (\Exception) {
+            $accumulator = 0;
+            foreach ($this->getFlipCandidates() as $index) {
+                $this->instructions[$index]->flipOperation();
+                try {
+                    $accumulator = $this->run();
+                    break;
+                } catch (\Exception) {
+                    $this->instructions[$index]->flipOperation();
+                    continue;
+                }
             }
         }
         return $accumulator;
+    }
+
+    protected function getFlipCandidates(): array
+    {
+        if ($this->flipCandidates === []) {
+            foreach ($this->instructions as $index => $instruction) {
+                if ($instruction->wasHit() && !$instruction->isAcc()) {
+                    $this->flipCandidates[] = $index;
+                }
+            }
+        }
+        return $this->flipCandidates;
     }
 
     public function getAccumulator(): int
