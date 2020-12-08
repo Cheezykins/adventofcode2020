@@ -68,17 +68,19 @@ class Program
             return $this->run();
         } catch (\Exception) {
             $accumulator = 0;
-            foreach ($this->getFlipCandidates() as $index) {
+        }
+
+        foreach ($this->getFlipCandidates() as $index) {
+            $this->instructions[$index]->flipOperation();
+            try {
+                $accumulator = $this->run();
+                break;
+            } catch (\Exception) {
                 $this->instructions[$index]->flipOperation();
-                try {
-                    $accumulator = $this->run();
-                    break;
-                } catch (\Exception) {
-                    $this->instructions[$index]->flipOperation();
-                    continue;
-                }
+                continue;
             }
         }
+
         return $accumulator;
     }
 
