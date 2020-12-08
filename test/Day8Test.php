@@ -14,11 +14,10 @@ class Day8Test extends TestCase
 
         $program = Program::loadFromString($fixture);
 
-        try {
-            $program->run();
-        } catch (\Exception $exception) {
-            $this->assertEquals(5, $program->getAccumulator());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Already visited!');
+        $program->run();
+        $this->assertEquals(5, $program->getAccumulator());
     }
 
     public function testSolution()
@@ -27,11 +26,10 @@ class Day8Test extends TestCase
 
         $program = Program::loadFromString($fixture);
 
-        try {
-            $program->run();
-        } catch (\Exception $exception) {
-            $this->assertEquals(1451, $program->getAccumulator());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Already visited!');
+        $program->run();
+        $this->assertEquals(1451, $program->getAccumulator());
     }
 
     public function testExample2()
@@ -41,7 +39,6 @@ class Day8Test extends TestCase
         $program = Program::loadFromString($fixture);
 
         $result = $program->runSequence();
-
         $this->assertEquals(8, $result);
     }
 
@@ -52,7 +49,6 @@ class Day8Test extends TestCase
         $program = Program::loadFromString($fixture);
 
         $result = $program->runSequence();
-
         $this->assertEquals(1160, $result);
     }
 }
